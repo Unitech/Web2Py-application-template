@@ -4,13 +4,11 @@
 import logging, logging.handlers
 import os
 
-app_name = 'bench'
-
 #
 # Here we check the value of PRODUCTION environment variable
 # On Ubuntu : export PRODUCTION='True'
 #
-prod = cache.ram('prod', lambda : bool(os.environ.get('PRODUCTION')), time_expire=5)
+prod = cache.ram('prod', lambda : bool(os.environ.get('PRODUCTION')), time_expire=500)
 
 if prod==True:
     migrate=False

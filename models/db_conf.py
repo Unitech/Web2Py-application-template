@@ -76,3 +76,4 @@ def get_configured_logger(name):
 
 logger = cache.ram('once',lambda:get_configured_logger(request.application),time_expire=99999999)
 
+

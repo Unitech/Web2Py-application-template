@@ -2,5 +2,36 @@
 #
 # Web2Py Template
 #
-# Including CSS/JS Minification logger and other things
+# Including CSS/JS Minification, logger and other things
 #
+
+
+### Add JS and CSS files on models/minification.py.
+
+Actually there are :
+
+    js_files = [
+        URL('static', 'js/jquery-1.5.2.js'),
+        URL('static', 'js/main.js')
+        ]
+    css_files = [
+        URL('static', 'css/base.css')
+        ]
+
+An example of working inclusion is in views/layouts/layout.html :
+
+    {{# Js files are included from db/minification.py }}
+    {{for _item in js_files or []:}}
+    <script src="{{=_item}}"></script>
+    {{pass}}
+
+    {{# Css files}}
+    {{for _item in css_files:}}
+    <link rel="stylesheet" href="{{=_item}}">
+    {{pass}}
+
+
+### To differenciate a production environ there is an environ variable to set
+
+export PRODUCTION='True'
+

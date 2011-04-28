@@ -14,7 +14,7 @@
     <meta name="{{=_item}}" content="{{=response.meta[_item]}}" />
     {{pass}}
 
-    {{# Js files are included from db/menu.py }}
+    {{# Js files are included from db/minification.py }}
     {{for _item in js_files or []:}}
     <script src="{{=_item}}"></script>
     {{pass}}

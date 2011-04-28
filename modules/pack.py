@@ -40,36 +40,36 @@ def compress_css(fd1, out):
         if properties:
             out.write("%s{%s}" % ( ','.join( selectors ), ''.join(['%s:%s;' % (key, properties[key]) for key in porder])[:-1] ))
 
-def process_js(js_files, app_name):    
-    PATH=os.path.join(os.getcwd(), 'applications')
-    jsm = JavascriptMinify()
+def process_js(js_files, app_path, out_js):
+    out_file = os.path.join(app_path, 'static', out_js)
+    jsm = jsmin2.JavascriptMinify()
     try:
-        os.remove(PATH + OUTJS)
+        os.remove(out_file)
     except:
         print "delete nop"
-    out = open(os.path.join(PATH, app_name, 'static', OUTJS), 'wb')
+    out = open(out_file, 'wb')
     for t in js_files:
         print "Processing " + t
-        fd1 = open(PATH + t, 'r')
+        fd1 = open(app_path[:app_path[:-1].rfind('/')] + t, 'r')
         jsm.minify(fd1, out)
         fd1.close()
     out.close()
-    print "OUTJS = " + os.path.join(PATH, app_name, 'static', OUTJS)
+    print "OUTJS = " + out_file
     return OUTJS
 
-def process_css(css_files, app_name):
-    PATH=os.path.join(os.getcwd(), 'applications')
+def process_css(css_files, app_path, out_css):
+    out_file = os.path.join(app_path, 'static', out_css)
     try:
-        os.remove(PATH + OUTCSS)
+        os.remove(out_file)
     except:
         print "delete nop"
-    out = open(os.path.join(PATH, app_name, 'static', OUTCSS), 'wb')
+    out = open(out_file, 'wb')
     for t in css_files:
-        print "Processing " + t
-        fd1 = open(PATH + t, 'r')
+        print "Processing " + app_path
+        fd1 = open(app_path[:app_path[:-1].rfind('/')] + t, 'r')
         compress_css(fd1, out)
         fd1.close()
     out.close()
-    print "OUT : " + os.path.join(PATH, app_name, 'static', OUTCSS)
+    print "OUT : " + out_file
     return OUTCSS
 
