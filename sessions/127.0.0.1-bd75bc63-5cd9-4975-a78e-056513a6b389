@@ -1,0 +1,14 @@
+(dp1
+S'last_query'
+p2
+S'db.articles.id>0'
+p3
+sS'_formkey[auth_user/create]'
+p4
+S'448c0d8f-3168-45fd-b56a-ba638019b83a'
+p5
+sS'_formkey[articles/create]'
+p6
+S'0dc7ef7b-7e00-4c07-9677-a7ab284036b8'
+p7
+s.
