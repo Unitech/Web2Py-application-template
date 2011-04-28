@@ -1,0 +1,73 @@
+timestamp: 2011-04-28T17:19:26.530050
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username CHAR(128),
+    email CHAR(128) UNIQUE,
+    first_name CHAR(512),
+    last_name CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2011-04-28T17:19:26.536746
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-04-28T17:19:26.539330
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-04-28T17:19:26.541494
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2011-04-28T17:19:26.547203
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-04-28T17:19:26.555055
+CREATE TABLE articles(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(128),
+    content TEXT,
+    image_src CHAR(512),
+    tags TEXT,
+    like_nb INTEGER,
+    dislike_nb INTEGER,
+    date_created TIMESTAMP,
+    approved CHAR(1),
+    categorie CHAR(64),
+    user_name CHAR(512)
+);
+success!
+timestamp: 2011-04-28T17:19:26.558177
+CREATE TABLE comments(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(128),
+    content TEXT,
+    like_nb INTEGER,
+    dislike_nb INTEGER,
+    date_created TIMESTAMP,
+    article INTEGER REFERENCES articles(id) ON DELETE CASCADE,
+    user_name CHAR(512)
+);
+success!

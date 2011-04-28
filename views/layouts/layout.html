@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{=T.accepted_language or 'en'}}">
+  <head>
+    <title>{{=response.title or request.application}}</title>
+    <meta charset="utf-8" />	  	
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+    <meta name="application-name" content="{{=request.application}}" />	
+    <meta name="google-site-verification" content="" />
+    <link rel="shortcut icon" href="{{=URL('static','favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','favicon.png')}}">
+
+    {{# Meta tags}}
+    {{for _item in response.meta or []:}}
+    <meta name="{{=_item}}" content="{{=response.meta[_item]}}" />
+    {{pass}}
+
+    {{# Js files are included from db/menu.py }}
+    {{for _item in js_files or []:}}
+    <script src="{{=_item}}"></script>
+    {{pass}}
+
+    {{# Css files}}
+    {{for _item in css_files:}}
+    <link rel="stylesheet" href="{{=_item}}">
+    {{pass}}
+
+  </head>
+  
+  <body>
+    <div class="flash">{{=response.flash or ''}}</div>
+    <div id="container">
+      <div id="wrapper">
+	<div id="header">
+	  <h1><span id="appname" style="color:black;">
+	      {{=request.application.capitalize()}}
+	    </span>Admin</h1>
+	  <div style="clear: both;"></div>
+	</div>
+	
+	<div id="page">
+	  <div id="content">{{include}}</div>
+	  <div style="clear: both;"></div>
+	</div>
+	
+	<div id="footer">
+	  <a href="http://www.web2py.com/" style="float: left; padding-right: 6px;">
+	    <img src="{{=URL('static','images/poweredby.png')}}"/>
+	  </a>
+	  {{=T('Copyright')}} &#169; 2010				
+	  <div style="clear: both;"></div>
+	</div>
+      </div>
+    </div>
+  </body>
+</html>
