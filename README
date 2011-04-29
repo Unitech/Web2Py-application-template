@@ -29,8 +29,7 @@ This Web2Py application template include :
 +++++++++++++ A new tree organization
 
 ├── models
-│   ├── db_conf.py	// Configuration Mail + Auth 
-│   ├── db.py           // Distinction between Prod or not (disbling migration & co)
+│   ├── db.py           // Distinction between Prod or not (disbling migration & co) + Configuration Mail + Auth 
 │   ├── db_tables.py    // DB models declaration
 │   └── extra.py        // File to include (JS and CSS)
 └── views
