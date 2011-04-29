@@ -21,17 +21,27 @@ response.meta.keywords = ''
 response.meta.generator = ''
 response.meta.copyright = 'Copyright 2010-2012'
 
-
-########################################################################
-#
-# Here you put your CSS and JS file to include in layouts
-#
-########################################################################
+################## FILES TO INCLUDE #####################
 
 if prod==True:
-    css_files = [URL('static', 'min.css')]
-    js_files = [URL('static', 'min.js')]
+    ##############################
+    # Dont touch at this files !
+    ##############################
+    css_files = [
+        URL('static', 'min.css')
+        ]
+    js_files = [
+        URL('static', 'min.js')
+        ]
 else:
+    ########################################################################
+    #
+    # Here you put your CSS and JS file to include in layouts
+    #
+    # To include this files you have to add in your layouts :
+    #    {{include 'layouts/js_css_include_from_extra.html'}}
+    #
+    ########################################################################
     js_files = [
         URL('static', 'js/jquery-1.5.2.js'),
         URL('static', 'js/main.js'),

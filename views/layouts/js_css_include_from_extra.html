@@ -1,0 +1,10 @@
+
+    {{# Js files are included from db/minification.py }}
+    {{for _item in js_files or []:}}
+    <script src="{{=_item}}"></script>
+    {{pass}}
+
+    {{# Css files}}
+    {{for _item in css_files:}}
+    <link rel="stylesheet" href="{{=_item}}">
+    {{pass}}

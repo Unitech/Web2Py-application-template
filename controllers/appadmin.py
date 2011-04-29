@@ -48,7 +48,8 @@ response.menu = [[T('design'), False, URL('admin', 'default', 'design',
                  args=[request.application])], [T('db'), False,
                  URL('index')], [T('state'), False,
                  URL('state')], [T('cache'), False,
-                 URL('ccache')]]
+                 URL('ccache')],
+                 [T('errors'), False, '/admin/default/errors/' + request.application]]
 
 # ##########################################################
 # ## auxiliary functions

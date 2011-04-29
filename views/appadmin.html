@@ -134,6 +134,8 @@ jQuery(document).ready(function(){
   <br/><h2>{{=T("Current session")}}</h2>
   {{=BEAUTIFY(session)}}
 
+{{elif request.function == 'errors':}}
+<h1>LOL</h1>
 
 {{elif request.function == 'ccache':}}
 <h2>Cache</h2>

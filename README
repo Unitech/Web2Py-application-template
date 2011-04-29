@@ -1,5 +1,6 @@
-
-+------------ Web2Py Template -----------+
+		+								+
+		+---------------------- Web2Py Template ------------------------+
+		+								+
 
 
 This Web2Py application template include :
@@ -18,8 +19,12 @@ This Web2Py application template include :
         ]
 
 2# Then in the view include 
-    {{include 'layouts/js_css_include_from_extra.html'}}
+   
+   {{include 'layouts/js_css_include_from_extra.html'}}
 
+3# To switch to production or development mode go to :
+
+   http://localhost:8000/[APPLICATION_NAME]/appadmin/state
 
 +++++++++++++ A new tree organization
 
