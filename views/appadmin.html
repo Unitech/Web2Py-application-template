@@ -102,7 +102,31 @@ jQuery(document).ready(function(){
 
 
 {{elif request.function=='state':}}
-  <h1>{{=T("Internal State")}}</h1>
+  <center>
+    {{# PRODUCTION OR DEVELOPMENT MONITOR}}
+    <h1>{{=request.application}} is on 
+      production :
+      {{=prod}}
+    </h1>
+  </center>
+  {{=form}}
+  
+  <br/>
+  <h2>File included in layout.html</h2>
+
+  <h4>CSS file included</h4>
+  
+  {{for css in css_files:}}
+  {{=css}}<br/>
+  {{pass}}
+  
+  <h4>JS file included</h4>
+  
+  {{for js in js_files:}}
+  {{=js}}<br/>
+  {{pass}}
+  
+  <br/>
   <h2>{{=T("Current request")}}</h2>
   {{=BEAUTIFY(request)}}
   <br/><h2>{{=T("Current response")}}</h2>

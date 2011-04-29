@@ -11,6 +11,13 @@ import copy
 import gluon.contenttype
 import gluon.fileutils
 
+
+from gluon.admin import *
+from gluon.fileutils import abspath
+from glob import glob
+import shutil
+import platform
+
 # ## critical --- make a copy of the environment
 
 global_env = copy.copy(globals())
@@ -287,8 +294,28 @@ def update():
 # ###########################################################
 
 
+from gluon.compileapp import compile_application, remove_compiled_application
+
 def state():
-    return dict()
+    form = FORM(
+        P(TAG.BUTTON("Switch to production ?", _type="submit", _name="prod", _value="prod")),
+        P(TAG.BUTTON("Switch to development ?", _type="submit", _name="dev", _value="dev"))
+    )
+    if form.accepts(request.vars, session):
+        if request.vars.prod:
+            os.environ['PRODUCTION'] = 'True'
+            global css_files
+            global js_files
+            compress = local_import('pack', reload=True)
+            compress.process_css(css_files, request.folder, 'min.css')
+            compress.process_js(js_files, request.folder, 'min.js')
+            c = app_compile(request.application, request)
+        if request.vars.dev:
+            os.environ['PRODUCTION'] = ''
+            remove_compiled_application(apath(request.application, r=request))
+            
+        redirect(URL(r=request))
+    return dict(form=form)
 
 def ccache():
     form = FORM(

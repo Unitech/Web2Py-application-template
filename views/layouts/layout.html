@@ -13,16 +13,8 @@
     {{for _item in response.meta or []:}}
     <meta name="{{=_item}}" content="{{=response.meta[_item]}}" />
     {{pass}}
-
-    {{# Js files are included from db/minification.py }}
-    {{for _item in js_files or []:}}
-    <script src="{{=_item}}"></script>
-    {{pass}}
-
-    {{# Css files}}
-    {{for _item in css_files:}}
-    <link rel="stylesheet" href="{{=_item}}">
-    {{pass}}
+    
+    {{include 'layouts/js_css_include_from_extra.html'}}
 
   </head>
   

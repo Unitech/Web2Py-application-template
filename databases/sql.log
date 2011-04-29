@@ -1,31 +1,29 @@
-timestamp: 2011-04-28T17:19:26.530050
+timestamp: 2011-04-29T14:08:21.572181
 CREATE TABLE auth_user(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username CHAR(128),
-    email CHAR(128) UNIQUE,
-    first_name CHAR(512),
-    last_name CHAR(512),
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
     password CHAR(512),
     registration_key CHAR(512),
-    reset_password_key CHAR(512),
-    registration_id CHAR(512)
+    reset_password_key CHAR(512)
 );
 success!
-timestamp: 2011-04-28T17:19:26.536746
+timestamp: 2011-04-29T14:08:21.588977
 CREATE TABLE auth_group(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role CHAR(512),
     description TEXT
 );
 success!
-timestamp: 2011-04-28T17:19:26.539330
+timestamp: 2011-04-29T14:08:21.590916
 CREATE TABLE auth_membership(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
     group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
 );
 success!
-timestamp: 2011-04-28T17:19:26.541494
+timestamp: 2011-04-29T14:08:21.593043
 CREATE TABLE auth_permission(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
@@ -34,7 +32,7 @@ CREATE TABLE auth_permission(
     record_id INTEGER
 );
 success!
-timestamp: 2011-04-28T17:19:26.547203
+timestamp: 2011-04-29T14:08:21.595209
 CREATE TABLE auth_event(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     time_stamp TIMESTAMP,
@@ -44,7 +42,7 @@ CREATE TABLE auth_event(
     description TEXT
 );
 success!
-timestamp: 2011-04-28T17:19:26.555055
+timestamp: 2011-04-29T14:08:21.600177
 CREATE TABLE articles(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title CHAR(128),
@@ -59,7 +57,7 @@ CREATE TABLE articles(
     user_name CHAR(512)
 );
 success!
-timestamp: 2011-04-28T17:19:26.558177
+timestamp: 2011-04-29T14:08:21.616785
 CREATE TABLE comments(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title CHAR(128),

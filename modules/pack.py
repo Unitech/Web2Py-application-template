@@ -50,9 +50,12 @@ def process_js(js_files, app_path, out_js):
     out = open(out_file, 'wb')
     for t in js_files:
         print "Processing " + t
-        fd1 = open(app_path[:app_path[:-1].rfind('/')] + t, 'r')
-        jsm.minify(fd1, out)
-        fd1.close()
+        try:
+            fd1 = open(app_path[:app_path[:-1].rfind('/')] + t, 'r')
+            jsm.minify(fd1, out)
+            fd1.close()
+        except:
+            print 'ERROR IN MIN : ' + app_path[:app_path[:-1].rfind('/')] + t + ' DOESNT EXIST'
     out.close()
     print "OUTJS = " + out_file
     return OUTJS
@@ -66,9 +69,12 @@ def process_css(css_files, app_path, out_css):
     out = open(out_file, 'wb')
     for t in css_files:
         print "Processing " + app_path
-        fd1 = open(app_path[:app_path[:-1].rfind('/')] + t, 'r')
-        compress_css(fd1, out)
-        fd1.close()
+        try:
+            fd1 = open(app_path[:app_path[:-1].rfind('/')] + t, 'r')
+            compress_css(fd1, out)
+            fd1.close()
+        except:
+            print 'ERROR IN CSS : ' + app_path[:app_path[:-1].rfind('/')] + t + ' DOESNT EXIST'
     out.close()
     print "OUT : " + out_file
     return OUTCSS

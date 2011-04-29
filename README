@@ -1,37 +1,40 @@
 
-#
-# Web2Py Template
-#
-# Including CSS/JS Minification, logger and other things
-#
++------------ Web2Py Template -----------+
 
 
-### Add JS and CSS files on models/minification.py.
+This Web2Py application template include :
 
-Actually there are :
++++++++++++++ CSS/JS combination/minification + App compilation directly on 'appadmin'
+
+1# Include all your JS and CSS files in models/extra.py
 
     js_files = [
         URL('static', 'js/jquery-1.5.2.js'),
-        URL('static', 'js/main.js')
+        URL('static', 'js/main.js'),
+        URL('static', 'js/shit.js')
         ]
     css_files = [
         URL('static', 'css/base.css')
         ]
 
-An example of working inclusion is in views/layouts/layout.html :
-
-    {{# Js files are included from db/minification.py }}
-    {{for _item in js_files or []:}}
-    <script src="{{=_item}}"></script>
-    {{pass}}
-
-    {{# Css files}}
-    {{for _item in css_files:}}
-    <link rel="stylesheet" href="{{=_item}}">
-    {{pass}}
+2# Then in the view include 
+    {{include 'layouts/js_css_include_from_extra.html'}}
 
 
-### To differenciate a production environ there is an environ variable to set
++++++++++++++ A new tree organization
 
-export PRODUCTION='True'
+├── models
+│   ├── db_conf.py	// Configuration Mail + Auth 
+│   ├── db.py           // Distinction between Prod or not (disbling migration & co)
+│   ├── db_tables.py    // DB models declaration
+│   └── extra.py        // File to include (JS and CSS)
+└── views
+    ├── appadmin.html
+    ├── default
+    │   └── index.html
+    ├── __init__.py
+    └── layouts
+        ├── admin_layout.html
+        ├── layout.html
+        └── web2py_ajax.htm
 
