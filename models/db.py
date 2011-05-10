@@ -52,7 +52,6 @@ auth.settings.hmac_key = 'sha512:46b39fae-cd78-425d-803e-49c781eaf70e'   # befor
 #                 Field('registration_key', length=512, writable=False, readable=False, default=''),
 #                 Field('reset_password_key', length=512, writable=False, readable=False, default=''),
 #                 Field('registration_id', length=512, writable=False, readable=False, default=''))
-
 # custom_auth_table = db[auth.settings.table_user_name] #get the custom_auth_table
 # custom_auth_table.password.requires = [CRYPT()]
 # custom_auth_table.email.requires = [
@@ -102,4 +101,3 @@ def get_configured_logger(name):
     return logger
 
 logger = cache.ram('once',lambda:get_configured_logger(request.application),time_expire=99999999)
-

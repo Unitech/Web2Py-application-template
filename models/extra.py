@@ -45,7 +45,6 @@ else:
     js_files = [
         URL('static', 'js/jquery-1.5.2.js'),
         URL('static', 'js/main.js'),
-        URL('static', 'js/shit.js')
         ]
     css_files = [
         URL('static', 'css/base.css')
